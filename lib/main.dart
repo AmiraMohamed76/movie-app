@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/services/services_locator.dart';
-import 'package:movie_app/movies/presentation/screens/movies_screen.dart';
+
+import 'movies/presentation/screens/movies_screen_ui.dart';
 
 void main() {
   ServicesLocator().init();
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: MoviesScreen()
+      home: MainMoviesScreen()
     );
   }
 }
