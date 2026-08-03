@@ -77,7 +77,7 @@ class TopRatedComponent extends StatelessWidget {
           case RequestState.error:
             return SizedBox(
               height: 400,
-              child: Center(child: Text(state.popularMessage)),
+              child: Center(child: Text(state.topRatedMessage)),
             );
         }
       },
