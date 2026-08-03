@@ -17,11 +17,11 @@ class GetMovieDetailsUseCase extends BaseUseCase<MovieDetails, MovieDetailsParam
 }
 
 class MovieDetailsParameters extends Equatable{
-  final int id;
+  final int movieId;
 
-  const MovieDetailsParameters({required this.id});
+  const MovieDetailsParameters({required this.movieId});
 
   @override
-  List<Object?> get props => [id];
+  List<Object?> get props => [movieId];
 
 }

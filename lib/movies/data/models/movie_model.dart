@@ -1,3 +1,4 @@
+import 'package:movie_app/core/utils/app_constants.dart';
 import 'package:movie_app/movies/domain/entities/movie.dart';
 
 class MovieModel extends Movie {
@@ -14,7 +15,7 @@ class MovieModel extends Movie {
   factory MovieModel.fromJson(Map<String, dynamic> json) => MovieModel(
       id: json['id'],
       title: json['title'],
-      backdropPath: json['backdrop_path'],
+      backdropPath: json['backdrop_path']?? AppConstants.notFoundImage,
       genreIds: List<int>.from(json['genre_ids'].map((e) => e)),
       overview: json['overview'],
       voteAverage: json['vote_average'].toDouble(),

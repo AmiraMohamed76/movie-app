@@ -5,20 +5,20 @@ import 'genres.dart';
 class MovieDetails extends Equatable {
   final int id;
   final String title;
-  final String overView;
+  final String overview;
   final String backdropPath;
   final double voteAverage;
-  final int runTime;
-  final int releaseDate;
+  final int runtime;
+  final String releaseDate;
   final List<Genres> genres;
 
   const MovieDetails({
     required this.id,
     required this.title,
-    required this.overView,
+    required this.overview,
     required this.backdropPath,
     required this.voteAverage,
-    required this.runTime,
+    required this.runtime,
     required this.releaseDate,
     required this.genres,
   });
@@ -27,10 +27,10 @@ class MovieDetails extends Equatable {
   List<Object?> get props => [
     id,
     title,
-    overView,
+    overview,
     backdropPath,
     voteAverage,
-    runTime,
+    runtime,
     releaseDate,
     genres
   ];

@@ -2,15 +2,47 @@ part of 'movie_details_bloc.dart';
 
 class MovieDetailsState extends Equatable {
   final MovieDetails? movieDetails;
-  final RequestState movieState;
-  final String movieMessage;
+  final RequestState movieDetailsState;
+  final String movieDetailsMessage;
+  final List<Recommendation>? recommendations;
+  final RequestState recommendationState;
+  final String recommendationMessage;
 
   const MovieDetailsState({
     this.movieDetails,
-    this.movieState = RequestState.loading,
-    this.movieMessage = '',
+    this.movieDetailsState = RequestState.loading,
+    this.movieDetailsMessage = '',
+    this.recommendations = const [],
+    this.recommendationState = RequestState.loading,
+    this.recommendationMessage = '',
   });
 
+  MovieDetailsState copyWith({
+    MovieDetails? movieDetails,
+    RequestState? movieDetailsState,
+    String? movieDetailsMessage,
+    List<Recommendation>? recommendation,
+    RequestState? recommendationState,
+    String? recommendationMessage,
+  }) {
+    return MovieDetailsState(
+      movieDetails: movieDetails ?? this.movieDetails,
+      movieDetailsState: movieDetailsState ?? this.movieDetailsState,
+      movieDetailsMessage: movieDetailsMessage ?? this.movieDetailsMessage,
+      recommendations: recommendation ?? this.recommendations,
+      recommendationState: recommendationState ?? this.recommendationState,
+      recommendationMessage:
+          recommendationMessage ?? this.recommendationMessage,
+    );
+  }
+
   @override
-  List<Object?> get props => [movieDetails, movieState, movieMessage];
+  List<Object?> get props => [
+    movieDetails,
+    movieDetailsState,
+    movieDetailsMessage,
+    recommendations,
+    recommendationState,
+    recommendationMessage,
+  ];
 }

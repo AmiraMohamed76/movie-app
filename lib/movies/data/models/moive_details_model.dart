@@ -5,10 +5,10 @@ class MovieDetailsModel extends MovieDetails {
   const MovieDetailsModel({
     required super.id,
     required super.title,
-    required super.overView,
+    required super.overview,
     required super.backdropPath,
     required super.voteAverage,
-    required super.runTime,
+    required super.runtime,
     required super.releaseDate,
     required super.genres,
   });
@@ -17,10 +17,10 @@ class MovieDetailsModel extends MovieDetails {
       MovieDetailsModel(
         id: json['id'],
         title: json['title'],
-        overView: json['overview'],
+        overview: json['overview'],
         backdropPath: json['backdrop_path'],
         voteAverage: json['vote_average'].toDouble(),
-        runTime: json['runtime'],
+        runtime: json['runtime'],
         releaseDate: json['release_date'],
         genres: List<GenresModel>.from(
           json['genres'].map((e) => GenresModel.fromJson(e)),
