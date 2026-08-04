@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/core/network/api_constance.dart';
 import 'package:movie_app/core/utils/enums.dart';
 import 'package:movie_app/tvs/presentation/controller/series_bloc.dart';
+import 'package:movie_app/tvs/presentation/screens/series_details_screen.dart';
 
 
 class OnAirComponent extends StatelessWidget {
@@ -36,7 +37,7 @@ class OnAirComponent extends StatelessWidget {
                   return GestureDetector(
                     key: const Key('openMovieMinimalDetail'),
                     onTap: () {
-                      // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => MovieDetailScreen(id: item.id)));
+                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SeriesDetailsScreen(id: item.id)));
                     },
                     child: Stack(
                       children: [

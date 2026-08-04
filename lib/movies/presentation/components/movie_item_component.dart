@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/core/network/api_constance.dart';
 import 'package:movie_app/movies/domain/entities/movie.dart';
-import 'package:movie_app/tvs/domain/entities/series.dart';
 import 'package:shimmer/shimmer.dart';
 
 class MovieItemComponent extends StatelessWidget {

@@ -22,7 +22,6 @@ class MovieDetailScreen extends StatelessWidget {
       create: (context) => sl<MovieDetailsBloc>()
         ..add(GetMovieDetailsEvent(id))
         ..add(GetRecommendationsEvent(id)),
-      lazy: false,
       child: Scaffold(body: const MovieDetailContent()),
     );
   }
@@ -37,9 +36,12 @@ class MovieDetailContent extends StatelessWidget {
       builder: (context, state) {
         switch (state.movieDetailsState) {
           case RequestState.loading:
-            return SizedBox(
-              height: 170,
-              child: Center(child: CircularProgressIndicator.adaptive()),
+            return Expanded(
+              child: Center(
+                child: SizedBox(
+                  child: CircularProgressIndicator.adaptive(),
+                ),
+              ),
             );
           case RequestState.loaded:
             return CustomScrollView(

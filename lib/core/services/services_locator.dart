@@ -14,8 +14,12 @@ import 'package:movie_app/tvs/data/repository/series_repository.dart';
 import 'package:movie_app/tvs/domain/repository/base_series_repository.dart';
 import 'package:movie_app/tvs/domain/use_cases/get_on_air_series_usecase.dart';
 import 'package:movie_app/tvs/domain/use_cases/get_popular_series_usecase.dart';
+import 'package:movie_app/tvs/domain/use_cases/get_season_episodes_usecase.dart';
+import 'package:movie_app/tvs/domain/use_cases/get_series_details_usecase.dart';
+import 'package:movie_app/tvs/domain/use_cases/get_series_recommendation_usecase.dart';
 import 'package:movie_app/tvs/domain/use_cases/get_top_rated_series_usecase.dart';
 import 'package:movie_app/tvs/presentation/controller/series_bloc.dart';
+import 'package:movie_app/tvs/presentation/controller/series_details_bloc.dart';
 
 final sl = GetIt.instance; //sl => Service Locator  // make it global to use around th whole project
 
@@ -30,6 +34,7 @@ class ServicesLocator {
     sl.registerFactory(() => MoviesBloc(sl(), sl(), sl()));
     sl.registerFactory(() => MovieDetailsBloc(sl(), sl()));
     sl.registerFactory(() => SeriesBloc(sl(), sl(), sl()));
+    sl.registerFactory(() => SeriesDetailsBloc(sl(), sl(), sl()));
 
     /// UseCases
     /// /// UseCase needs object fron repo => i sent sl() (object from service locator) because sl has object from repo
@@ -41,6 +46,9 @@ class ServicesLocator {
     sl.registerLazySingleton(() => GetOnAirSeriesUseCase(sl()));
     sl.registerLazySingleton(() => GetPopularSeriesUseCase(sl()));
     sl.registerLazySingleton(() => GetTopRatedSeriesUseCase(sl()));
+    sl.registerLazySingleton(() => GetSeriesDetailsUseCase(sl()));
+    sl.registerLazySingleton(() => GetSeriesRecommendationUseCase(sl()));
+    sl.registerLazySingleton(() => GetSeasonEpisodesUseCase(sl()));
 
     /// Repository
     /// /// MoviesRepo needs object fron data source => i sent sl() (object from service locator) because sl has object from data source

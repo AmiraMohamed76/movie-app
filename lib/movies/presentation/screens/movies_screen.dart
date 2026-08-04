@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/core/services/services_locator.dart';
 import 'package:movie_app/movies/presentation/components/movie_header_component.dart';
 import 'package:movie_app/movies/presentation/components/now_playing_component.dart';

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/core/network/api_constance.dart';
 import 'package:movie_app/core/utils/enums.dart';
 import 'package:movie_app/tvs/presentation/controller/series_bloc.dart';
+import 'package:movie_app/tvs/presentation/screens/series_details_screen.dart';
 import 'package:shimmer/shimmer.dart';
 
 
@@ -34,12 +35,12 @@ class TopRatedSeriesComponent extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   itemCount: state.topRatedSeries.length,
                   itemBuilder: (context, index) {
-                    final movie = state.topRatedSeries[index];
+                    final series = state.topRatedSeries[index];
                     return Container(
                       padding: const EdgeInsets.only(right: 8.0),
                       child: InkWell(
                         onTap: () {
-                          // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => MovieDetailScreen(id: movie.id)));
+                          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SeriesDetailsScreen(id: series.id)));
                         },
                         child: ClipRRect(
                           borderRadius: const BorderRadius.all(
@@ -48,7 +49,7 @@ class TopRatedSeriesComponent extends StatelessWidget {
                           child: CachedNetworkImage(
                             width: 120.0,
                             fit: BoxFit.cover,
-                            imageUrl: ApiConstance.imageUrl(movie.backdropPath),
+                            imageUrl: ApiConstance.imageUrl(series.backdropPath),
                             placeholder: (context, url) => Shimmer.fromColors(
                               baseColor: Colors.grey[850]!,
                               highlightColor: Colors.grey[800]!,

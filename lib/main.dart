@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/services/services_locator.dart';
 
-import 'movies/presentation/screens/movies_screen.dart';
 import 'navigation_screen.dart';
 
 void main() {
