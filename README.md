@@ -1,17 +1,43 @@
-# movie_app
+# Movie App
 
-A new Flutter project.
+A modern Flutter application that allows users to discover movies and TV series using The Movie Database (TMDB) API. The app provides an intuitive browsing experience with detailed information about movies and TV shows, including cast, recommendations, seasons, and episodes.
 
-## Getting Started
+The project is built following Clean Architecture principles to ensure scalability, maintainability, and testability. The codebase is organized into independent feature modules, where each module encapsulates its own presentation, domain, and data layers, resulting in a highly modular and reusable architecture.
 
-This project is a starting point for a Flutter application.
+ ## Architecture
+The application follows a feature-first modular structure, where each feature (Movies and TV Series) is completely isolated.
 
-A few resources to get you started if this is your first Flutter project:
+## Each feature contains three layers:
+- ✅ Presentation Layer
+- ✅ Domain Layer
+- ✅ Data Layer
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Technical Highlights
+- ✅ Flutter - Dart
+- ✅ Clean Architecture
+- ✅ Feature-based Modular Design
+- ✅ SOLID Principles
+- ✅ Repository Pattern
+- ✅ Dependency Injection (GetIt)
+- ✅ BLoC State Management
+- ✅ Immutable State
+- ✅ TMDB REST API Integration
+- ✅ Reusable UI Components
+- ✅ Responsive UI
+- ✅ Error & Exception Handling
+- ✅ Separation of Concerns
+  
+## Exception & Error Handling
+The application implements a centralized error handling strategy across the data layer.
+
+- ✅ Handles API exceptions.
+- ✅ Handles invalid server responses.
+- ✅ Converts exceptions into user-friendly failure messages.
+- ✅ Uses custom Failure classes to separate business logic from networking concerns.
+
+
+## State Management
+The project uses the BLoC Pattern to separate presentation from business logic.
+
+This project demonstrates best practices in Flutter development by combining Clean Architecture, BLoC state management, feature-based modularization, and robust exception handling to create a scalable, maintainable, and production-ready movie discovery application.
