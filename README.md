@@ -1,8 +1,18 @@
-# Movie App
+<p align="center">
+ <img width="250" height="250" alt="app_icon-Photoroom" src="https://github.com/user-attachments/assets/c8a454cb-a32e-48ad-ab18-deeb57ce8982", />
+ </p>
 
-A modern Flutter application that allows users to discover movies and TV series using The Movie Database (TMDB) API. The app provides an intuitive browsing experience with detailed information about movies and TV shows, including cast, recommendations, seasons, and episodes.
+<h1 align="center">Movie App</h1>
 
-The project is built following Clean Architecture principles to ensure scalability, maintainability, and testability. The codebase is organized into independent feature modules, where each module encapsulates its own presentation, domain, and data layers, resulting in a highly modular and reusable architecture.
+<p align="center">
+  A modern Flutter application that allows users to discover movies and TV series using The Movie Database (TMDB) API.
+</p>
+
+
+ ## Brief
+ The app provides an intuitive browsing experience with detailed information about movies and TV shows, including cast, recommendations, seasons, and episodes.
+
+ The project is built following Clean Architecture principles to ensure scalability, maintainability, and testability. The codebase is organized into independent feature modules, where each module encapsulates its own presentation, domain, and data layers, resulting in  a highly modular and reusable architecture.
 
  ## Architecture
 The application follows a feature-first modular structure, where each feature (Movies and TV Series) is completely isolated.
