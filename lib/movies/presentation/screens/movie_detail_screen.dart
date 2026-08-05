@@ -36,11 +36,9 @@ class MovieDetailContent extends StatelessWidget {
       builder: (context, state) {
         switch (state.movieDetailsState) {
           case RequestState.loading:
-            return Expanded(
-              child: Center(
-                child: SizedBox(
-                  child: CircularProgressIndicator.adaptive(),
-                ),
+            return Center(
+              child: SizedBox(
+                child: CircularProgressIndicator.adaptive(),
               ),
             );
           case RequestState.loaded:

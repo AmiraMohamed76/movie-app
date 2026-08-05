@@ -37,7 +37,6 @@ class SeriesDetailContent extends StatelessWidget {
       key: const Key('movieDetailScrollView'),
       headerSliverBuilder: (context, innerBoxIsScrolled) {
         return [
-
           const SeriesDetailsComponent(),
 
           SliverPersistentHeader(
@@ -90,7 +89,7 @@ class _TabBarDelegate extends SliverPersistentHeaderDelegate {
       bool overlapsContent,
       ) {
     return Container(
-      color: Colors.black,
+      color: Colors.transparent,
       child: tabBar,
     );
   }

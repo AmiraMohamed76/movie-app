@@ -27,7 +27,7 @@ class EpisodesTab extends StatelessWidget {
             );
           case RequestState.loaded:
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
               child: Column(
                 children: [
                   DropdownMenu<int>(
@@ -145,7 +145,7 @@ class EpisodeItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '${episode.episodeNumber}. ${episode.name}',
+                    ' ${episode.episodeNumber}. ${episode.name}',
                     style: GoogleFonts.poppins(
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
@@ -156,7 +156,7 @@ class EpisodeItem extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        episode.airDate.toFormattedDate(),
+                        " ${episode.airDate.toFormattedDate()}",
                         style: const TextStyle(
                           fontSize: 12.0,
                           fontWeight: FontWeight.w500,
