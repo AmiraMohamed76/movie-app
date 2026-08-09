@@ -8,7 +8,7 @@ import 'package:movie_app/movies/domain/repository/base_movies_repository.dart';
 class GetRecommendationUseCase extends BaseUseCase<List<Recommendation>, RecommendationParameters> {
   final BaseMoviesRepository baseMoviesRepository;
 
-  GetRecommendationUseCase(this.baseMoviesRepository);
+  GetRecommendationUseCase({required this.baseMoviesRepository});
 
   @override
   Future<Either<Failure, List<Recommendation>>> call(RecommendationParameters parameters) async{

@@ -12,7 +12,7 @@ import 'package:movie_app/movies/domain/use_cases/get_recommendation_usecase.dar
 class MoviesRepository extends BaseMoviesRepository {
   final BaseMovieRemoteDataSource baseMovieRemoteDataSource;
 
-  MoviesRepository(this.baseMovieRemoteDataSource);
+  MoviesRepository({required this.baseMovieRemoteDataSource});
 
   @override
   Future<Either<Failure, List<Movie>>> getNowPlayingMovies() async {

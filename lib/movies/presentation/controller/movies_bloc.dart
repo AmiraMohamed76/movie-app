@@ -18,11 +18,11 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
   final GetPopularMoviesUseCase getPopularMoviesUseCase;
   final GetTopRatedMoviesUseCase getTopRatedMoviesUseCase;
 
-  MoviesBloc(
-    this.getNowPlayingMoviesUseCase,
-    this.getPopularMoviesUseCase,
-    this.getTopRatedMoviesUseCase,
-  ) : super(const MoviesState()) {
+  MoviesBloc({
+    required this.getNowPlayingMoviesUseCase,
+    required this.getPopularMoviesUseCase,
+    required this.getTopRatedMoviesUseCase,
+  }) : super(const MoviesState()) {
     on<GetNowPlayingMoviesEvent>(_getNowPLayingMovies);
     on<GetPopularMoviesEvent>(_getPopularMovies);
     on<GetTopRatedMoviesEvent>(_getTopRatedMovies);
@@ -63,7 +63,10 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
         ),
       ),
       (result) => emit(
-        state.copyWith(popularState: RequestState.loaded, popularMovies: result),
+        state.copyWith(
+          popularState: RequestState.loaded,
+          popularMovies: result,
+        ),
       ),
     );
   }
@@ -82,7 +85,10 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
         ),
       ),
       (result) => emit(
-        state.copyWith(topRatedState: RequestState.loaded, topRatedMovies: result),
+        state.copyWith(
+          topRatedState: RequestState.loaded,
+          topRatedMovies: result,
+        ),
       ),
     );
   }

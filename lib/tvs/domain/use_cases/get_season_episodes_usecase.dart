@@ -9,7 +9,7 @@ class GetSeasonEpisodesUseCase
     extends BaseUseCase<List<Episode>, SeasonEpisodeParameters> {
   final BaseSeriesRepository baseSeriesRepository;
 
-  GetSeasonEpisodesUseCase(this.baseSeriesRepository);
+  GetSeasonEpisodesUseCase({required this.baseSeriesRepository});
 
   @override
   Future<Either<Failure, List<Episode>>> call(

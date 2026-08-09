@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:movie_app/core/error/exceptions.dart';
 import 'package:movie_app/core/network/api_constance.dart';
+import 'package:movie_app/core/network/dio_connection/dio_service.dart';
 import 'package:movie_app/core/network/error_message_model.dart';
 import 'package:movie_app/movies/data/models/moive_details_model.dart';
 import 'package:movie_app/movies/data/models/movie_model.dart';
@@ -23,9 +24,14 @@ abstract class BaseMovieRemoteDataSource {
 }
 
 class MovieRemoteDataSource extends BaseMovieRemoteDataSource {
+  final BaseDioClient dioClient;
+
+  MovieRemoteDataSource({required this.dioClient});
+
+
   @override
   Future<List<MovieModel>> getNowPlayingMovies() async {
-    final response = await Dio().get(ApiConstance.nowPlayingMoviesPath);
+    final response = await dioClient.get(ApiConstance.nowPlayingMoviesPath);
     if (response.statusCode == 200) {
       return List<MovieModel>.from(
         (response.data['results'] as List).map((e) => MovieModel.fromJson(e)),
@@ -39,7 +45,7 @@ class MovieRemoteDataSource extends BaseMovieRemoteDataSource {
 
   @override
   Future<List<MovieModel>> getPopularMovies() async {
-    final response = await Dio().get(ApiConstance.popularMoviesPath);
+    final response = await dioClient.get(ApiConstance.popularMoviesPath);
 
     if (response.statusCode == 200) {
       return List<MovieModel>.from(
@@ -54,7 +60,7 @@ class MovieRemoteDataSource extends BaseMovieRemoteDataSource {
 
   @override
   Future<List<MovieModel>> getTopRatedMovies() async {
-    final response = await Dio().get(ApiConstance.topRatedMoviesPath);
+    final response = await dioClient.get(ApiConstance.topRatedMoviesPath);
 
     if (response.statusCode == 200) {
       return List<MovieModel>.from(
@@ -71,7 +77,7 @@ class MovieRemoteDataSource extends BaseMovieRemoteDataSource {
   Future<MovieDetailsModel> getMovieDetails(
     MovieDetailsParameters parameters,
   ) async {
-    final response = await Dio().get(
+    final response = await dioClient.get(
       ApiConstance.movieDetailsPath(parameters.movieId),
     );
 
@@ -88,7 +94,7 @@ class MovieRemoteDataSource extends BaseMovieRemoteDataSource {
   Future<List<RecommendationModel>> getMovieRecommendations(
     RecommendationParameters parameters,
   ) async {
-    final response = await Dio().get(
+    final response = await dioClient.get(
       ApiConstance.movieRecommendationsPath(parameters.movieId),
     );
 

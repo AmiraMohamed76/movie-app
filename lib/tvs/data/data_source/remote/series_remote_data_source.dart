@@ -1,6 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:movie_app/core/error/exceptions.dart';
 import 'package:movie_app/core/network/api_constance.dart';
+import 'package:movie_app/core/network/dio_connection/dio_service.dart';
 import 'package:movie_app/core/network/error_message_model.dart';
 import 'package:movie_app/tvs/data/models/episode_model.dart';
 import 'package:movie_app/tvs/data/models/series_details_model.dart';
@@ -31,9 +31,13 @@ abstract class BaseSeriesRemoteDataSource {
 }
 
 class SeriesRemoteDataSource extends BaseSeriesRemoteDataSource {
+  final BaseDioClient dioClient;
+
+  SeriesRemoteDataSource({required this.dioClient});
+
   @override
   Future<List<SeriesModel>> getOnAirSeries() async {
-    final response = await Dio().get(ApiConstance.onAirSeriesPath);
+    final response = await dioClient.get(ApiConstance.onAirSeriesPath);
 
     if (response.statusCode == 200) {
       return List<SeriesModel>.from(
@@ -48,7 +52,7 @@ class SeriesRemoteDataSource extends BaseSeriesRemoteDataSource {
 
   @override
   Future<List<SeriesModel>> getPopularSeries() async {
-    final response = await Dio().get(ApiConstance.popularSeriesPath);
+    final response = await dioClient.get(ApiConstance.popularSeriesPath);
 
     if (response.statusCode == 200) {
       return List<SeriesModel>.from(
@@ -63,7 +67,7 @@ class SeriesRemoteDataSource extends BaseSeriesRemoteDataSource {
 
   @override
   Future<List<SeriesModel>> getTopRatedSeries() async {
-    final response = await Dio().get(ApiConstance.topRatedSeriesPath);
+    final response = await dioClient.get(ApiConstance.topRatedSeriesPath);
 
     if (response.statusCode == 200) {
       return List<SeriesModel>.from(
@@ -80,7 +84,7 @@ class SeriesRemoteDataSource extends BaseSeriesRemoteDataSource {
   Future<SeriesDetailsModel> getSeriesDetails(
     SeriesDetailsParameters parameters,
   ) async {
-    final response = await Dio().get(
+    final response = await dioClient.get(
       ApiConstance.seriesDetailsPath(parameters.seriesId),
     );
 
@@ -97,7 +101,7 @@ class SeriesRemoteDataSource extends BaseSeriesRemoteDataSource {
   Future<List<SeriesRecommendationModel>> getSeriesRecommendations(
     SeriesRecommendationParameters parameters,
   ) async {
-    final response = await Dio().get(
+    final response = await dioClient.get(
       ApiConstance.seriesRecommendationsPath(parameters.seriesId),
     );
 
@@ -118,7 +122,7 @@ class SeriesRemoteDataSource extends BaseSeriesRemoteDataSource {
   Future<List<EpisodeModel>> getSeasonEpisodes(
     SeasonEpisodeParameters parameters,
   ) async {
-    final response = await Dio().get(
+    final response = await dioClient.get(
       ApiConstance.seriesSeasonEpisodes(
         parameters.seriesId,
         parameters.seasonNumber,

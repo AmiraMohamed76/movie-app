@@ -7,7 +7,7 @@ import 'package:movie_app/tvs/domain/repository/base_series_repository.dart';
 
 class GetSeriesRecommendationUseCase extends BaseUseCase<List<SeriesRecommendation>, SeriesRecommendationParameters> {
   final BaseSeriesRepository baseSeriesRepository;
-  GetSeriesRecommendationUseCase(this.baseSeriesRepository);
+  GetSeriesRecommendationUseCase({required this.baseSeriesRepository});
 
   @override
   Future<Either<Failure, List<SeriesRecommendation>>> call(SeriesRecommendationParameters parameters) async {

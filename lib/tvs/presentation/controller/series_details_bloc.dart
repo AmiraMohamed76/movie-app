@@ -19,11 +19,11 @@ class SeriesDetailsBloc extends Bloc<SeriesDetailsEvent, SeriesDetailsState> {
   final GetSeriesRecommendationUseCase getSeriesRecommendationUseCase;
   final GetSeasonEpisodesUseCase getSeasonEpisodesUseCase;
 
-  SeriesDetailsBloc(
-    this.getSeriesDetailsUseCase,
-    this.getSeriesRecommendationUseCase,
-    this.getSeasonEpisodesUseCase,
-  ) : super(SeriesDetailsState()) {
+  SeriesDetailsBloc({
+    required this.getSeriesDetailsUseCase,
+    required this.getSeriesRecommendationUseCase,
+    required this.getSeasonEpisodesUseCase,
+  }) : super(SeriesDetailsState()) {
     on<GetSeriesDetailsEvent>(_getSeriesDetails);
     on<GetSeriesRecommendationEvent>(_getSeriesRecommendations);
     on<GetSeasonEpisodesEvent>(_getSeasonEpisodes);
@@ -82,26 +82,29 @@ class SeriesDetailsBloc extends Bloc<SeriesDetailsEvent, SeriesDetailsState> {
     emit(state.copyWith(episodesState: RequestState.loading));
 
     final result = await getSeasonEpisodesUseCase(
-      SeasonEpisodeParameters(seriesId: event.seriesId, seasonNumber: event.seasonNumber),
+      SeasonEpisodeParameters(
+        seriesId: event.seriesId,
+        seasonNumber: event.seasonNumber,
+      ),
     );
 
     result.fold(
-          (failure) => emit(
+      (failure) => emit(
         state.copyWith(
           episodesState: RequestState.error,
           episodesMessage: failure.message,
         ),
       ),
-          (result) => emit(
-        state.copyWith(
-          episodesState: RequestState.loaded,
-          episodes: result,
-        ),
+      (result) => emit(
+        state.copyWith(episodesState: RequestState.loaded, episodes: result),
       ),
     );
   }
 
-  FutureOr<void> _changeSeason(ChangeSeasonEvent event, Emitter<SeriesDetailsState> emit) {
+  FutureOr<void> _changeSeason(
+    ChangeSeasonEvent event,
+    Emitter<SeriesDetailsState> emit,
+  ) {
     emit(state.copyWith(selectedSeason: event.seasonNumber));
   }
 }

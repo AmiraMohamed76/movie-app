@@ -8,7 +8,7 @@ class GetNowPlayingMoviesUseCase extends BaseUseCase<List<Movie>, NoParameters>{
 
   final BaseMoviesRepository baseMovieRepository;
 
-  GetNowPlayingMoviesUseCase(this.baseMovieRepository);
+  GetNowPlayingMoviesUseCase({required this.baseMovieRepository});
 
 
   @override

@@ -1,4 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:movie_app/core/network/dio_connection/dio_config.dart';
+import 'package:movie_app/core/network/dio_connection/dio_service.dart';
 import 'package:movie_app/movies/data/data_source/remote/movie_remote_data_source.dart';
 import 'package:movie_app/movies/data/repository/movie_repository.dart';
 import 'package:movie_app/movies/domain/repository/base_movies_repository.dart';
@@ -21,43 +24,99 @@ import 'package:movie_app/tvs/domain/use_cases/get_top_rated_series_usecase.dart
 import 'package:movie_app/tvs/presentation/controller/series_bloc.dart';
 import 'package:movie_app/tvs/presentation/controller/series_details_bloc.dart';
 
-final sl = GetIt.instance; //sl => Service Locator  // make it global to use around th whole project
-
+final sl = GetIt
+    .instance; //sl => Service Locator  // make it global to use around th whole project
 
 class ServicesLocator {
   void init() {
-
     ///  lazy => mean to initialize object when need it | without lazy => create object when calling sl in main when app starts
-
-    /// Bloc
-    /// /// registerFactory => create new object from class (Movies Bloc)  | registerLazySingleton => create same object (Sigleton)
-    sl.registerFactory(() => MoviesBloc(sl(), sl(), sl()));
-    sl.registerFactory(() => MovieDetailsBloc(sl(), sl()));
-    sl.registerFactory(() => SeriesBloc(sl(), sl(), sl()));
-    sl.registerFactory(() => SeriesDetailsBloc(sl(), sl(), sl()));
-
-    /// UseCases
-    /// /// UseCase needs object fron repo => i sent sl() (object from service locator) because sl has object from repo
-    sl.registerLazySingleton(() => GetNowPlayingMoviesUseCase(sl()));
-    sl.registerLazySingleton(() => GetPopularMoviesUseCase(sl()));
-    sl.registerLazySingleton(() => GetTopRatedMoviesUseCase(sl()));
-    sl.registerLazySingleton(() => GetMovieDetailsUseCase(sl()));
-    sl.registerLazySingleton(() => GetRecommendationUseCase(sl()));
-    sl.registerLazySingleton(() => GetOnAirSeriesUseCase(sl()));
-    sl.registerLazySingleton(() => GetPopularSeriesUseCase(sl()));
-    sl.registerLazySingleton(() => GetTopRatedSeriesUseCase(sl()));
-    sl.registerLazySingleton(() => GetSeriesDetailsUseCase(sl()));
-    sl.registerLazySingleton(() => GetSeriesRecommendationUseCase(sl()));
-    sl.registerLazySingleton(() => GetSeasonEpisodesUseCase(sl()));
 
     /// Repository
     /// /// MoviesRepo needs object fron data source => i sent sl() (object from service locator) because sl has object from data source
-    sl.registerLazySingleton<BaseMoviesRepository>(() => MoviesRepository(sl()));
-    sl.registerLazySingleton<BaseSeriesRepository>(() => SeriesRepository(sl()));
+    sl.registerLazySingleton<BaseMoviesRepository>(
+          () => MoviesRepository(baseMovieRemoteDataSource: sl()),
+    );
+    sl.registerLazySingleton<BaseSeriesRepository>(
+          () => SeriesRepository(baseSeriesRemoteDataSource: sl()),
+    );
 
     /// Data Source
-    sl.registerLazySingleton<BaseMovieRemoteDataSource>(() => MovieRemoteDataSource());
-    sl.registerLazySingleton<BaseSeriesRemoteDataSource>(() => SeriesRemoteDataSource());
+    sl.registerLazySingleton<BaseMovieRemoteDataSource>(
+          () => MovieRemoteDataSource(dioClient: sl()),
+    );
+    sl.registerLazySingleton<BaseSeriesRemoteDataSource>(
+          () => SeriesRemoteDataSource(dioClient: sl()),
+    );
+
+    /// Dio
+    sl.registerLazySingleton<Dio>(() => DioFactory.create());
+    sl.registerLazySingleton<BaseDioClient>(() => DioClient(dio: sl()));
+
+    /// Bloc
+    /// /// registerFactory => create new object from class (Movies Bloc)  | registerLazySingleton => create same object (Sigleton)
+    sl.registerFactory(
+      () => MoviesBloc(
+        getNowPlayingMoviesUseCase: sl(),
+        getPopularMoviesUseCase: sl(),
+        getTopRatedMoviesUseCase: sl(),
+      ),
+    );
+    sl.registerFactory(
+      () => MovieDetailsBloc(
+        getMovieDetailsUseCase: sl(),
+        getRecommendationUseCase: sl(),
+      ),
+    );
+    sl.registerFactory(
+      () => SeriesBloc(
+        getOnAirSeriesUseCase: sl(),
+        getPopularSeriesUseCase: sl(),
+        getTopRatedSeriesUseCase: sl(),
+      ),
+    );
+    sl.registerFactory(
+      () => SeriesDetailsBloc(
+        getSeasonEpisodesUseCase: sl(),
+        getSeriesDetailsUseCase: sl(),
+        getSeriesRecommendationUseCase: sl(),
+      ),
+    );
+
+    /// UseCases
+    /// /// UseCase needs object fron repo => i sent sl() (object from service locator) because sl has object from repo
+    sl.registerLazySingleton(
+      () => GetNowPlayingMoviesUseCase(baseMovieRepository: sl()),
+    );
+    sl.registerLazySingleton(
+      () => GetPopularMoviesUseCase(baseMovieRepository: sl()),
+    );
+    sl.registerLazySingleton(
+      () => GetTopRatedMoviesUseCase(baseMovieRepository: sl()),
+    );
+    sl.registerLazySingleton(
+      () => GetMovieDetailsUseCase(baseMoviesRepository: sl()),
+    );
+    sl.registerLazySingleton(
+      () => GetRecommendationUseCase(baseMoviesRepository: sl()),
+    );
+    sl.registerLazySingleton(
+      () => GetOnAirSeriesUseCase(baseSeriesRepository: sl()),
+    );
+    sl.registerLazySingleton(
+      () => GetPopularSeriesUseCase(baseSeriesRepository: sl()),
+    );
+    sl.registerLazySingleton(
+      () => GetTopRatedSeriesUseCase(baseSeriesRepository: sl()),
+    );
+    sl.registerLazySingleton(
+      () => GetSeriesDetailsUseCase(baseSeriesRepository: sl()),
+    );
+    sl.registerLazySingleton(
+      () => GetSeriesRecommendationUseCase(baseSeriesRepository: sl()),
+    );
+    sl.registerLazySingleton(
+      () => GetSeasonEpisodesUseCase(baseSeriesRepository: sl()),
+    );
 
   }
 }

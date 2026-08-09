@@ -16,9 +16,9 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
   final GetMovieDetailsUseCase getMovieDetailsUseCase;
   final GetRecommendationUseCase getRecommendationUseCase;
 
-  MovieDetailsBloc(
-    this.getMovieDetailsUseCase,
-    this.getRecommendationUseCase,
+  MovieDetailsBloc({
+    required this.getMovieDetailsUseCase,
+    required this.getRecommendationUseCase,}
   ) : super(MovieDetailsState()) {
     on<GetMovieDetailsEvent>(_getMovieDetails);
     on<GetRecommendationsEvent>(_getMovieRecommendations);

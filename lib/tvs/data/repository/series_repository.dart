@@ -14,7 +14,7 @@ import 'package:movie_app/tvs/domain/use_cases/get_series_recommendation_usecase
 class SeriesRepository extends BaseSeriesRepository {
   final BaseSeriesRemoteDataSource baseSeriesRemoteDataSource;
 
-  SeriesRepository(this.baseSeriesRemoteDataSource);
+  SeriesRepository({required this.baseSeriesRemoteDataSource});
 
   @override
   Future<Either<Failure, List<Series>>> getOnAirSeries() async {

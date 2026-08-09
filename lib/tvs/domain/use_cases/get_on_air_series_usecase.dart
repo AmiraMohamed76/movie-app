@@ -7,7 +7,7 @@ import 'package:movie_app/tvs/domain/repository/base_series_repository.dart';
 class GetOnAirSeriesUseCase extends BaseUseCase<List<Series>,NoParameters> {
   final BaseSeriesRepository baseSeriesRepository;
 
-  GetOnAirSeriesUseCase(this.baseSeriesRepository);
+  GetOnAirSeriesUseCase({required this.baseSeriesRepository});
 
   @override
   Future<Either<Failure, List<Series>>> call(NoParameters parameters) async {

@@ -8,7 +8,7 @@ import 'package:movie_app/movies/domain/repository/base_movies_repository.dart';
 class GetMovieDetailsUseCase extends BaseUseCase<MovieDetails, MovieDetailsParameters> {
   final BaseMoviesRepository baseMoviesRepository;
 
-  GetMovieDetailsUseCase(this.baseMoviesRepository);
+  GetMovieDetailsUseCase({required this.baseMoviesRepository});
 
   @override
   Future<Either<Failure, MovieDetails>> call(MovieDetailsParameters parameter) async{

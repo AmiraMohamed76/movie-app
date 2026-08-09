@@ -7,7 +7,7 @@ import 'package:movie_app/tvs/domain/repository/base_series_repository.dart';
 
 class GetSeriesDetailsUseCase extends BaseUseCase<SeriesDetails, SeriesDetailsParameters> {
   final BaseSeriesRepository baseSeriesRepository;
-  GetSeriesDetailsUseCase(this.baseSeriesRepository);
+  GetSeriesDetailsUseCase({required this.baseSeriesRepository});
 
   @override
   Future<Either<Failure, SeriesDetails>> call(SeriesDetailsParameters parameters) async {

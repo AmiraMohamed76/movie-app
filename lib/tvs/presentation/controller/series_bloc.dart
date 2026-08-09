@@ -18,11 +18,11 @@ class SeriesBloc extends Bloc<SeriesEvent, SeriesState> {
   final GetPopularSeriesUseCase getPopularSeriesUseCase;
   final GetTopRatedSeriesUseCase getTopRatedSeriesUseCase;
 
-  SeriesBloc(
-    this.getOnAirSeriesUseCase,
-    this.getPopularSeriesUseCase,
-    this.getTopRatedSeriesUseCase,
-  ) : super(SeriesState()) {
+  SeriesBloc({
+    required this.getOnAirSeriesUseCase,
+    required this.getPopularSeriesUseCase,
+    required this.getTopRatedSeriesUseCase,
+  }) : super(SeriesState()) {
     on<GetOnAirSeriesEvent>(_getOnAirSeries);
     on<GetPopularSeriesEvent>(_getPopularSeries);
     on<GetTopRatedSeriesEvent>(_getTopRatedSeries);

@@ -8,7 +8,7 @@ class GetTopRatedSeriesUseCase extends BaseUseCase<List<Series>, NoParameters> {
 
   final BaseSeriesRepository baseSeriesRepository;
 
-  GetTopRatedSeriesUseCase(this.baseSeriesRepository);
+  GetTopRatedSeriesUseCase({required this.baseSeriesRepository});
 
   @override
   Future<Either<Failure, List<Series>>> call(NoParameters parameters) async{
