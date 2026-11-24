@@ -2,7 +2,7 @@
  <img width="250" height="250" alt="app_icon-Photoroom" src="https://github.com/user-attachments/assets/c8a454cb-a32e-48ad-ab18-deeb57ce8982", />
  </p>
 
-<h1 align="center">Movie App</h1>
+<h1 align="center">Movie Hub</h1>
 
 <p align="center">
   A modern Flutter application that allows users to discover movies and TV series using The Movie Database (TMDB) API.
@@ -51,3 +51,7 @@ The application implements a centralized error handling strategy across the data
 The project uses the BLoC Pattern to separate presentation from business logic.
 
 This project demonstrates best practices in Flutter development by combining Clean Architecture, BLoC state management, feature-based modularization, and robust exception handling to create a scalable, maintainable, and production-ready movie discovery application.
+
+<img width="2262" height="1437" alt="movie app" src="https://github.com/user-attachments/assets/8a62fe6c-942f-4962-8151-7d2d3c346292" />
+
+
